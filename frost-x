@@ -1,0 +1,256 @@
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local gui = Instance.new("ScreenGui")
+gui.Name = "FROST_X"
+gui.ResetOnSpawn = false
+gui.Parent = player:WaitForChild("PlayerGui")
+
+local main = Instance.new("Frame")
+main.Size = UDim2.fromOffset(300, 470)
+main.Position = UDim2.new(0.5, -150, 0.5, -235)
+main.BackgroundColor3 = Color3.fromRGB(8, 13, 25)
+main.BorderSizePixel = 0
+main.Parent = gui
+
+local corner = Instance.new("UICorner")
+corner.CornerRadius = UDim.new(0, 14)
+corner.Parent = main
+
+local stroke = Instance.new("UIStroke")
+stroke.Color = Color3.fromRGB(35, 70, 110)
+stroke.Thickness = 1
+stroke.Parent = main
+
+-- Title
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, -65, 0, 45)
+title.Position = UDim2.fromOffset(15, 5)
+title.BackgroundTransparency = 1
+title.Text = "FROST.X"
+title.TextColor3 = Color3.fromRGB(80, 190, 255)
+title.TextSize = 17
+title.Font = Enum.Font.GothamBold
+title.TextXAlignment = Enum.TextXAlignment.Left
+title.Parent = main
+
+-- Blue logo square
+local logo = Instance.new("Frame")
+logo.Size = UDim2.fromOffset(30, 30)
+logo.Position = UDim2.fromOffset(8, 12)
+logo.BackgroundColor3 = Color3.fromRGB(35, 155, 220)
+logo.BorderSizePixel = 0
+logo.Parent = main
+
+local logoCorner = Instance.new("UICorner")
+logoCorner.CornerRadius = UDim.new(0, 7)
+logoCorner.Parent = logo
+
+-- Close/minimize button
+local mini = Instance.new("TextButton")
+mini.Size = UDim2.fromOffset(27, 27)
+mini.Position = UDim2.new(1, -92, 0, 13)
+mini.Text = "-"
+mini.TextColor3 = Color3.fromRGB(210, 225, 240)
+mini.TextSize = 16
+mini.Font = Enum.Font.GothamBold
+mini.BackgroundColor3 = Color3.fromRGB(24, 35, 55)
+mini.BorderSizePixel = 0
+mini.Parent = main
+
+Instance.new("UICorner", mini).CornerRadius = UDim.new(0, 8)
+
+-- Toggle
+local toggle = Instance.new("TextButton")
+toggle.Size = UDim2.fromOffset(48, 25)
+toggle.Position = UDim2.new(1, -58, 0, 14)
+toggle.Text = ""
+toggle.BackgroundColor3 = Color3.fromRGB(45, 170, 235)
+toggle.BorderSizePixel = 0
+toggle.Parent = main
+
+Instance.new("UICorner", toggle).CornerRadius = UDim.new(1, 0)
+
+local knob = Instance.new("Frame")
+knob.Size = UDim2.fromOffset(21, 21)
+knob.Position = UDim2.new(1, -23, 0, 2)
+knob.BackgroundColor3 = Color3.fromRGB(225, 240, 250)
+knob.BorderSizePixel = 0
+knob.Parent = toggle
+
+Instance.new("UICorner", knob).CornerRadius = UDim.new(1, 0)
+
+-- Tabs
+local function tab(text, x)
+    local b = Instance.new("TextButton")
+    b.Size = UDim2.fromOffset(135, 32)
+    b.Position = UDim2.fromOffset(x, 50)
+    b.Text = text
+    b.TextSize = 10
+    b.Font = Enum.Font.GothamBold
+    b.TextColor3 = Color3.fromRGB(220, 235, 250)
+    b.BackgroundColor3 = Color3.fromRGB(20, 32, 60)
+    b.BorderSizePixel = 0
+    b.Parent = main
+
+    Instance.new("UICorner", b).CornerRadius = UDim.new(0, 15)
+
+    return b
+end
+
+tab("MAIN", 10)
+tab("SETTINGS", 155)
+
+-- Status
+local status = Instance.new("TextLabel")
+status.Size = UDim2.new(1, -20, 0, 30)
+status.Position = UDim2.fromOffset(10, 88)
+status.BackgroundTransparency = 1
+status.Text = "Ready"
+status.TextColor3 = Color3.fromRGB(110, 125, 145)
+status.TextSize = 10
+status.Font = Enum.Font.Gotham
+status.TextXAlignment = Enum.TextXAlignment.Left
+status.Parent = main
+
+-- Code box
+local code = Instance.new("TextBox")
+code.Size = UDim2.new(1, -20, 0, 38)
+code.Position = UDim2.fromOffset(10, 118)
+code.PlaceholderText = "..."
+code.Text = ""
+code.TextColor3 = Color3.fromRGB(100, 210, 255)
+code.TextSize = 12
+code.Font = Enum.Font.Code
+code.BackgroundColor3 = Color3.fromRGB(10, 16, 29)
+code.BorderSizePixel = 0
+code.Parent = main
+
+Instance.new("UICorner", code).CornerRadius = UDim.new(0, 10)
+
+local codeStroke = Instance.new("UIStroke")
+codeStroke.Color = Color3.fromRGB(40, 55, 75)
+codeStroke.Parent = code
+
+-- Option buttons
+local function option(text, x, y)
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.fromOffset(135, 42)
+    frame.Position = UDim2.fromOffset(x, y)
+    frame.BackgroundColor3 = Color3.fromRGB(15, 21, 35)
+    frame.BorderSizePixel = 0
+    frame.Parent = main
+
+    Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 9)
+
+    local label = Instance.new("TextLabel")
+    label.Size = UDim2.new(1, -55, 1, 0)
+    label.Position = UDim2.fromOffset(10, 0)
+    label.BackgroundTransparency = 1
+    label.Text = text
+    label.TextColor3 = Color3.fromRGB(135, 150, 170)
+    label.TextSize = 9
+    label.Font = Enum.Font.Gotham
+    label.TextXAlignment = Enum.TextXAlignment.Left
+    label.Parent = frame
+
+    local on = Instance.new("TextButton")
+    on.Size = UDim2.fromOffset(42, 25)
+    on.Position = UDim2.new(1, -48, 0.5, -12)
+    on.Text = "ON"
+    on.TextSize = 8
+    on.Font = Enum.Font.GothamBold
+    on.TextColor3 = Color3.fromRGB(5, 25, 40)
+    on.BackgroundColor3 = Color3.fromRGB(45, 175, 235)
+    on.BorderSizePixel = 0
+    on.Parent = frame
+
+    Instance.new("UICorner", on).CornerRadius = UDim.new(0, 7)
+end
+
+option("Auto Type", 10, 165)
+option("Auto Submit", 155, 165)
+
+-- Delete button
+local delete = Instance.new("TextButton")
+delete.Size = UDim2.new(1, -20, 0, 36)
+delete.Position = UDim2.fromOffset(10, 214)
+delete.Text = "DELETE"
+delete.TextColor3 = Color3.fromRGB(120, 210, 255)
+delete.TextSize = 11
+delete.Font = Enum.Font.GothamBold
+delete.BackgroundColor3 = Color3.fromRGB(12, 45, 70)
+delete.BorderSizePixel = 0
+delete.Parent = main
+
+Instance.new("UICorner", delete).CornerRadius = UDim.new(0, 8)
+
+-- Manual mode
+local manual = Instance.new("TextButton")
+manual.Size = UDim2.new(1, -20, 0, 36)
+manual.Position = UDim2.fromOffset(10, 257)
+manual.Text = "Manual Mode                         OFF"
+manual.TextColor3 = Color3.fromRGB(135, 150, 170)
+manual.TextSize = 9
+manual.Font = Enum.Font.Gotham
+manual.TextXAlignment = Enum.TextXAlignment.Left
+manual.BackgroundColor3 = Color3.fromRGB(14, 20, 33)
+manual.BorderSizePixel = 0
+manual.Parent = main
+
+Instance.new("UICorner", manual).CornerRadius = UDim.new(0, 8)
+
+-- Output box
+local output = Instance.new("TextLabel")
+output.Size = UDim2.new(1, -20, 0, 100)
+output.Position = UDim2.fromOffset(10, 305)
+output.BackgroundColor3 = Color3.fromRGB(9, 14, 25)
+output.BorderSizePixel = 0
+output.Text = "[FROST.X] Ready\n[FROST.X] Waiting...\n[FROST.X] System loaded"
+output.TextColor3 = Color3.fromRGB(75, 185, 245)
+output.TextSize = 9
+output.Font = Enum.Font.Code
+output.TextXAlignment = Enum.TextXAlignment.Left
+output.TextYAlignment = Enum.TextYAlignment.Top
+output.Parent = main
+
+Instance.new("UICorner", output).CornerRadius = UDim.new(0, 9)
+
+-- Dragging
+local UIS = game:GetService("UserInputService")
+local dragging = false
+local dragStart
+local startPos
+
+main.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1
+    or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = true
+        dragStart = input.Position
+        startPos = main.Position
+    end
+end)
+
+UIS.InputChanged:Connect(function(input)
+    if dragging and (
+        input.UserInputType == Enum.UserInputType.MouseMovement
+        or input.UserInputType == Enum.UserInputType.Touch
+    ) then
+        local delta = input.Position - dragStart
+
+        main.Position = UDim2.new(
+            startPos.X.Scale,
+            startPos.X.Offset + delta.X,
+            startPos.Y.Scale,
+            startPos.Y.Offset + delta.Y
+        )
+    end
+end)
+
+UIS.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1
+    or input.UserInputType == Enum.UserInputType.Touch then
+        dragging = false
+    end
+end)
